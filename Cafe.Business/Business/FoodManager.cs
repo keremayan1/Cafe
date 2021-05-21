@@ -25,22 +25,24 @@ namespace Cafe.Business.Business
 
         public IResult Delete(Food food)
         {
-            throw new NotImplementedException();
+            _foodDal.Delete(food);
+            return new SuccessResult();
         }
 
         public IDataResult<List<Food>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Food>>(_foodDal.GetAll());
         }
 
         public IDataResult<List<Food>> GetByFoodId(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Food>>(_foodDal.GetAll(p => p.Id == id));
         }
 
         public IResult Update(Food food)
         {
-            throw new NotImplementedException();
+            _foodDal.Update(food);
+            return new SuccessResult();
         }
     }
 }

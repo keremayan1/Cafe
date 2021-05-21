@@ -7,5 +7,6 @@ namespace Cafe.Entities.Concrete
 {
    public class Dessert:Food,IEntity
     {
+       
     }
 }
