@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Cafe.Business.Abstract;
 using Cafe.Core.Entities.Concrete;
 using Cafe.Core.Utilities.Results;
@@ -8,6 +6,7 @@ using Cafe.DataAccess.Abstract;
 
 namespace Cafe.Business.Business
 {
+   
    public class UserManager:IUserService
    {
        private IUserDal _userDal;

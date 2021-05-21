@@ -34,10 +34,13 @@ namespace Cafe.Business.DependencyResolvers.Autofac
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
             builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>().SingleInstance();
 
-            var assembly = Assembly.GetExecutingAssembly();
-            builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().EnableInterfaceInterceptors(new ProxyGenerationOptions
+            var assembly = Assembly.GetExecutingAssembly(); //GetExecutingAssembly: Mevcut Assemblye ulaşmak 
+
+            builder.RegisterAssemblyTypes(assembly). // şu assembly türündeki bütün assemblyleri kayıt et
+                AsImplementedInterfaces()
+                .EnableInterfaceInterceptors(new ProxyGenerationOptions
             {
-                Selector = new AspectInterceptorSelectors()
+                Selector = new AspectInterceptorSelectors() // Araaya girecek olan nesne 
             }).SingleInstance();
         }
 
