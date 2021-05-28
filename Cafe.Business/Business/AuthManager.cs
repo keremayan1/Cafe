@@ -34,7 +34,7 @@ namespace Cafe.Business.Business
            {
                return new ErrorDataResult<User>("Hatali Sifre");
            }
-           return new SuccessDataResult<User>("Giris Basarili Hosgeldiniz");
+           return new SuccessDataResult<User>(userToCheck,"Giris Basarili Hosgeldiniz");
        }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
@@ -52,7 +52,7 @@ namespace Cafe.Business.Business
 
             };
             _userService.Add(user);
-            return new SuccessDataResult<User>("Kayit Ekleme Islemi Basarili");
+            return new SuccessDataResult<User>(user,"Kayit Ekleme Islemi Basarili");
         }
 
         public IDataResult<AccessToken> CreateAccessToken(User user)
@@ -64,7 +64,12 @@ namespace Cafe.Business.Business
 
         public IResult UserExists(string email)
         {
-            if (_userService.GetByMail(email) != null)
+            //if (_userService.GetByMail(email) != null)
+            //{
+            //    return new ErrorResult("Bu Kullanıcı Sistemde Mevcut");
+            //}
+            var result = _userService.GetByMail(email);
+            if (result != null)
             {
                 return new ErrorResult("Bu Kullanıcı Sistemde Mevcut");
             }

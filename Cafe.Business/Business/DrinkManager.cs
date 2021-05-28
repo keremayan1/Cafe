@@ -5,6 +5,7 @@ using Cafe.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Cafe.Core.Aspects.Autofac.Transaction;
 
 namespace Cafe.Business.Business
 {
@@ -43,6 +44,13 @@ namespace Cafe.Business.Business
         public IResult Update(Drink drink)
         {
             _drinkDal.Update(drink);
+            return new SuccessResult();
+        }
+        [TransactionScopeAspect]
+        public IResult TransactionOperation(Drink drink)
+        {
+            _drinkDal.Update(drink);
+            _drinkDal.Add(drink);
             return new SuccessResult();
         }
     }

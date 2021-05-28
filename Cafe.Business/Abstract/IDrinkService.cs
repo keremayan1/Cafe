@@ -13,5 +13,6 @@ namespace Cafe.Business.Abstract
         IResult Add(Drink drink);
         IResult Delete(Drink drink);
         IResult Update(Drink drink);
+        IResult TransactionOperation(Drink drink);
     }
 }

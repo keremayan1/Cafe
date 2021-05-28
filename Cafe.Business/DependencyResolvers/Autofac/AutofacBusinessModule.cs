@@ -39,9 +39,9 @@ namespace Cafe.Business.DependencyResolvers.Autofac
             builder.RegisterAssemblyTypes(assembly). // şu assembly türündeki bütün assemblyleri kayıt et
                 AsImplementedInterfaces()
                 .EnableInterfaceInterceptors(new ProxyGenerationOptions
-            {
-                Selector = new AspectInterceptorSelectors() // Araaya girecek olan nesne 
-            }).SingleInstance();
+                {
+                    Selector = new AspectInterceptorSelectors() // Araaya girecek olan nesne 
+                }).SingleInstance();
         }
 
     }

@@ -11,9 +11,7 @@ namespace Cafe.DataAccess.Concrete.EntityFramework.MSSQL.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Cafe;Trusted_Connection=true");
-            optionsBuilder.EnableSensitiveDataLogging();
         }
         public DbSet<Drink> Drinks { get; set; }
         public DbSet<Dessert> Desserts { get; set; }
