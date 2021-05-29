@@ -20,6 +20,7 @@ namespace Cafe.Business.Business
         public IResult Add(Food food)
         {
             _foodDal.Add(food);
+          
             return new SuccessResult();
         }
 

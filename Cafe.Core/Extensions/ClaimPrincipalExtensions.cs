@@ -6,11 +6,11 @@ using System.Text;
 
 namespace Cafe.Core.Extensions
 {
-  public  static class ClaimPrincipialExtensions
+  public  static class ClaimPrincipalExtensions
     {
         public static List<string> Claims(this ClaimsPrincipal claimsPrincipal, string claimType)
         {
-            var result = claimsPrincipal?.FindAll(claimType).Select(x => x.Value).ToList();
+            var result = claimsPrincipal?.FindAll(claimType).Select(x=> x.Value).ToList();
             return result;
         }
 
