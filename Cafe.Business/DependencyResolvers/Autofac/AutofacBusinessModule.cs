@@ -9,6 +9,7 @@ using Cafe.DataAccess.Abstract;
 using Cafe.DataAccess.Concrete.EntityFramework.MSSQL;
 using Castle.DynamicProxy;
 using System.Reflection;
+using Cafe.Business.Adapters.Person;
 using Cafe.Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Http;
 using Module = Autofac.Module;
@@ -25,6 +26,7 @@ namespace Cafe.Business.DependencyResolvers.Autofac
             builder.RegisterType<EfFoodDal>().As<IFoodDal>().SingleInstance();
             builder.RegisterType<DessertManager>().As<IDessertService>().SingleInstance();
             builder.RegisterType<EfDessertDal>().As<IDessertDal>().SingleInstance();
+            builder.RegisterType<KpsServiceAdapter>().As<IKpsService>().SingleInstance();
 
 
 

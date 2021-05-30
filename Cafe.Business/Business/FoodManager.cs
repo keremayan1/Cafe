@@ -5,16 +5,19 @@ using Cafe.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Cafe.Business.Adapters.Person;
 
 namespace Cafe.Business.Business
 {
     public class FoodManager : IFoodService
     {
         IFoodDal _foodDal;
+        private IKpsService _kpsService;
 
-        public FoodManager(IFoodDal foodDal)
+        public FoodManager(IFoodDal foodDal, IKpsService kpsService)
         {
             _foodDal = foodDal;
+            _kpsService = kpsService;
         }
 
         public IResult Add(Food food)
@@ -45,5 +48,11 @@ namespace Cafe.Business.Business
             _foodDal.Update(food);
             return new SuccessResult();
         }
+
+        public IResult CheckIfResult(kullanici kullanici)
+        {
+            var result = _kpsService.Verify(kullanici);
+        }
+        
     }
 }

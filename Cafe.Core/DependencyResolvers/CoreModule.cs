@@ -13,12 +13,12 @@ namespace Cafe.Core.DependencyResolvers
 {
   public  class CoreModule:ICoreModule
     {
-        public void Load(IServiceCollection collection)
+        public void Load(IServiceCollection services)
         {
-            collection.AddMemoryCache();
-            collection.AddSingleton<ICacheManager, MemoryCacheManager>();
-            collection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            collection.AddSingleton<Stopwatch>();
+            services.AddMemoryCache();
+            services.AddSingleton<ICacheManager, MemoryCacheManager>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<Stopwatch>();
         }
     }
 }
