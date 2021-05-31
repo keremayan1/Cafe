@@ -49,10 +49,7 @@ namespace Cafe.Business.Business
             return new SuccessResult();
         }
 
-        public IResult CheckIfResult(kullanici kullanici)
-        {
-            var result = _kpsService.Verify(kullanici);
-        }
+       
         
     }
 }

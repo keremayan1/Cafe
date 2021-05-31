@@ -57,6 +57,7 @@ namespace Cafe.WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.ConfigrueCustomExceptionMiddleware();
             app.UseCors(builder => builder.WithOrigins().AllowAnyHeader());
             app.UseHttpsRedirection();
 

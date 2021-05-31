@@ -5,8 +5,9 @@ using Cafe.Core.Entities;
 
 namespace Cafe.Entities.Concrete
 {
-   public class kullanici:IEntity
+   public class Person:IEntity
     {
+        public int Id { get; set; }
         public long NationalId { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }

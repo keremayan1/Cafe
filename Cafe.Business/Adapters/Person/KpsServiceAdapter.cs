@@ -9,16 +9,16 @@ namespace Cafe.Business.Adapters.Person
 {
   public  class KpsServiceAdapter:IKpsService
     {
-        public async Task<bool> Verify(kullanici kullanici)
+        public async Task<bool> Verify(Entities.Concrete.Person person)
         {
-            return await VerifyId(kullanici);
+            return await VerifyId(person);
         }
 
-        private static async Task<bool> VerifyId(kullanici kullanici)
+        private static async Task<bool> VerifyId(Entities.Concrete.Person person)
         {
             var svc = new KPSPublicSoapClient(KPSPublicSoapClient.EndpointConfiguration.KPSPublicSoap);
-            var cmd = await svc.TCKimlikNoDogrulaAsync(Convert.ToInt64(kullanici.NationalId), kullanici.Name.ToUpper(),
-                kullanici.LastName.ToUpper(), kullanici.DateOfBirth.Year);
+            var cmd = await svc.TCKimlikNoDogrulaAsync(Convert.ToInt64(person.NationalId), person.Name.ToUpper(),
+                person.LastName.ToUpper(), person.DateOfBirth.Year);
             return cmd.Body.TCKimlikNoDogrulaResult;
         }
     }

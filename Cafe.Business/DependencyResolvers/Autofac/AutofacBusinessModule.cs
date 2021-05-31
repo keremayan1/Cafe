@@ -27,7 +27,8 @@ namespace Cafe.Business.DependencyResolvers.Autofac
             builder.RegisterType<DessertManager>().As<IDessertService>().SingleInstance();
             builder.RegisterType<EfDessertDal>().As<IDessertDal>().SingleInstance();
             builder.RegisterType<KpsServiceAdapter>().As<IKpsService>().SingleInstance();
-
+            builder.RegisterType<EfPersonDal>().As<IPersonDal>().SingleInstance();
+            builder.RegisterType<PersonManager>().As<IPersonService>().SingleInstance();
 
 
             builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
