@@ -15,6 +15,7 @@ namespace Cafe.Core.CrossCuttingConcerns.Validation.FluentValidation
             {
                 throw new ValidationException(result.Errors);
             }
+
         }
 
     }

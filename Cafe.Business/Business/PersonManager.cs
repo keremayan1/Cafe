@@ -21,8 +21,7 @@ namespace Cafe.Business.Business
             _personDal = personDal;
             _kpsService = kpsService;
         }
-
-
+            
         public IDataResult<List<Person>> GetPerson()
         {
             return new SuccessDataResult<List<Person>>(_personDal.GetAll());
@@ -32,7 +31,8 @@ namespace Cafe.Business.Business
         {
            
             var result = BusinessRules.Run(CheckIfRealPerson(person), 
-                CheckIfPersonExists(person.NationalId));
+                CheckIfPersonExists(person.NationalId)
+                );
             if (result != null)
             {
                 return result;

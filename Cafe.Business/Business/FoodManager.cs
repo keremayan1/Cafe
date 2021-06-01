@@ -12,12 +12,12 @@ namespace Cafe.Business.Business
     public class FoodManager : IFoodService
     {
         IFoodDal _foodDal;
-        private IKpsService _kpsService;
+       
 
-        public FoodManager(IFoodDal foodDal, IKpsService kpsService)
+        public FoodManager(IFoodDal foodDal)
         {
             _foodDal = foodDal;
-            _kpsService = kpsService;
+         
         }
 
         public IResult Add(Food food)

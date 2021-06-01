@@ -21,6 +21,10 @@ namespace Cafe.Business.DependencyResolvers.Autofac
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<DrinkManager>().As<IDrinkService>().SingleInstance();
+          
+            
+            
+            
             builder.RegisterType<EfDrinkDal>().As<IDrinkDal>().SingleInstance();
             builder.RegisterType<FoodManager>().As<IFoodService>().SingleInstance();
             builder.RegisterType<EfFoodDal>().As<IFoodDal>().SingleInstance();
