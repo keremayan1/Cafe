@@ -33,7 +33,7 @@ namespace Cafe.Business.Business
         {
             return new SuccessDataResult<List<Dessert>>(_dessertDal.GetAll(d => d.Id == id));
         }
-        [SecuredOperation("moderator")]
+       // [SecuredOperation("moderator")]
         [ValidationAspect(typeof(DessertValidator))]
         [CacheRemoveAspect("IDessertService.Get")]
         public IResult Add(Dessert dessert)
