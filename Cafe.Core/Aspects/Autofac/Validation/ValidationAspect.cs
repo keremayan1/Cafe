@@ -17,7 +17,7 @@ namespace Cafe.Core.Aspects.Autofac.Validation
         {
             if (!typeof(IValidator).IsAssignableFrom(type))
             {
-                throw new Exception("Hatali Dogrulama Servisi");
+                throw new System.Exception("Hatali Dogrulama Servisi");
             }
             _type = type;
         }

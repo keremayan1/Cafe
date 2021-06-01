@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
+using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+
 
 namespace Cafe.Core.Extensions
 {
@@ -29,20 +31,38 @@ namespace Cafe.Core.Extensions
             }
         }
 
-        private  Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
+        private Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
         {
             httpContext.Response.ContentType = "application/json";
-            httpContext.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
+            httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             string message = "Internal Server Error";
-            if (exception.GetType()==typeof(ValidationException))
-            {
-                message = exception.Message;
-            }
+         
+            FluentValidationValidationExceptionMessage(exception, ref message);
+            SystemAuthenticationExceptionMessage(ref message, exception);
             return httpContext.Response.WriteAsync(new ErrorDetails
             {
                 StatusCode = httpContext.Response.StatusCode,
                 Message = message
             }.ToString());
         }
+
+        private  void FluentValidationValidationExceptionMessage(Exception exception, ref string message)
+        {
+            if (exception.GetType() == typeof(FluentValidation.ValidationException))
+            {
+                message = exception.Message;
+            }
+        }
+
+        private  void SystemAuthenticationExceptionMessage( ref  string message, Exception exception)
+        {
+            if (exception.GetType() == typeof(AuthenticationException))
+            {
+                message = exception.Message;
+            }
+        }
+
+       
+
     }
 }

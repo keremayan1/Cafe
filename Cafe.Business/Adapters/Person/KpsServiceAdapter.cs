@@ -13,7 +13,7 @@ namespace Cafe.Business.Adapters.Person
         {
             return await VerifyId(person);
         }
-
+        //Postman's use DateTime variable: "2003-09-08T09:00:00"
         private static async Task<bool> VerifyId(Entities.Concrete.Person person)
         {
             var svc = new KPSPublicSoapClient(KPSPublicSoapClient.EndpointConfiguration.KPSPublicSoap);

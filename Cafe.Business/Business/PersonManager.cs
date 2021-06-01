@@ -31,11 +31,14 @@ namespace Cafe.Business.Business
         public IResult Add(Person person)
         {
            
-            var result = BusinessRules.Run(CheckIfRealPerson(person), CheckIfPersonExists(person.NationalId));
+            var result = BusinessRules.Run(CheckIfRealPerson(person), 
+                CheckIfPersonExists(person.NationalId));
             if (result != null)
             {
                 return result;
             }
+
+    
             _personDal.Add(person);
             return new SuccessResult("Islem Basarili");
         }
@@ -60,6 +63,7 @@ namespace Cafe.Business.Business
             return new SuccessResult();
         }
 
+       
        
 
 

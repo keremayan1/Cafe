@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Authentication;
 using System.Text;
 using Cafe.Core.Extensions;
 using Cafe.Core.Utilities.Interceptors;
@@ -30,7 +31,7 @@ namespace Cafe.Business.BusinessAspects.Autofac
                     return;
                 }   
             }
-            throw new Exception("Yetkiniz Yok");
+            throw new AuthenticationException("Yetkiniz Yok");
         }
     }
 }

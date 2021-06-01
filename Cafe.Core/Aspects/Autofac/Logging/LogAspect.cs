@@ -19,7 +19,7 @@ namespace Cafe.Core.Aspects.Autofac.Logging
         {
             if (!typeof(LoggerServiceBase).IsAssignableFrom(loggerService))
             {
-                throw new Exception("Hatali Log Servisi");
+                throw new System.Exception("Hatali Log Servisi");
             }
 
             _loggerService = (LoggerServiceBase)Activator.CreateInstance(loggerService); // Kullanicidan deger isteniyorsa bunu kullanmaliyiz
