@@ -5,11 +5,10 @@ using System.Text;
 
 namespace Cafe.Entities.Concrete
 {
-  public  class Drink:IEntity
+  public  class Drink:Food,IEntity
     {
-        public int Id { get; set; }
-        public string Spiece { get; set; }
-        public string Name { get; set; }
+     
+        public int Price { get; set; }
 
     }
 }
