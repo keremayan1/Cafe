@@ -21,7 +21,7 @@ namespace Cafe.Business.Business
             _personDal = personDal;
             _kpsService = kpsService;
         }
-            
+
         public IDataResult<List<Person>> GetPerson()
         {
             return new SuccessDataResult<List<Person>>(_personDal.GetAll());
@@ -29,21 +29,37 @@ namespace Cafe.Business.Business
 
         public IResult Add(Person person)
         {
-           
-            var result = BusinessRules.Run(CheckIfRealPerson(person), 
-                CheckIfPersonExists(person.NationalId)
-                );
+            var result = BusinessRules.Run(CheckIfRealPerson(person),
+                CheckIfPersonExists(person.NationalId),
+               PersonInformationToUpper(person));
             if (result != null)
             {
                 return result;
             }
-
-    
             _personDal.Add(person);
             return new SuccessResult("Islem Basarili");
         }
 
-        public IResult CheckIfRealPerson(Person person)
+        public IResult Update(Person person)
+        {
+            var result = BusinessRules.Run(CheckIfPersonExists(person.NationalId),
+                CheckIfRealPerson(person),
+                PersonInformationToUpper(person));
+            if (result != null)
+            {
+                return result;
+            }
+            _personDal.Update(person);
+            return new SuccessResult("Durum Guncellendi");
+        }
+        // Business Codes
+        private static IResult PersonInformationToUpper(Person person)
+        {
+            person.Name = person.Name.ToUpper();
+            person.LastName = person.LastName.ToUpper();
+            return new SuccessResult();
+        }
+        private IResult CheckIfRealPerson(Person person)
         {
             var result = _kpsService.Verify(person).Result;
             if (result != true)
@@ -53,7 +69,7 @@ namespace Cafe.Business.Business
             return new SuccessResult();
         }
 
-        public IResult CheckIfPersonExists(long nationalId)
+        private IResult CheckIfPersonExists(long nationalId)
         {
             var result = _personDal.GetAll(p => p.NationalId == nationalId).Any();
             if (result)
@@ -63,8 +79,6 @@ namespace Cafe.Business.Business
             return new SuccessResult();
         }
 
-       
-       
 
 
 

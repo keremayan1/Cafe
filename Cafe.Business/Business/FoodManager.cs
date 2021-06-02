@@ -17,7 +17,6 @@ namespace Cafe.Business.Business
         public FoodManager(IFoodDal foodDal)
         {
             _foodDal = foodDal;
-         
         }
 
         public IResult Add(Food food)

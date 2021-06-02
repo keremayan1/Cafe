@@ -10,5 +10,6 @@ namespace Cafe.Business.Abstract
    {
        IDataResult<List<Person>>  GetPerson();
        IResult Add(Person person);
+       IResult Update(Person person);
    }
 }
