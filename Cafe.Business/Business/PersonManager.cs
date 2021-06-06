@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Cafe.Business.Abstract;
 using Cafe.Business.Adapters.Person;
+using Cafe.Business.ValidationRules.FluentValidation;
+using Cafe.Core.Aspects.Autofac.Validation;
 using Cafe.Core.Utilities.BusinessRules;
 using Cafe.Core.Utilities.Results;
 using Cafe.DataAccess.Abstract;
@@ -26,11 +28,11 @@ namespace Cafe.Business.Business
         {
             return new SuccessDataResult<List<Person>>(_personDal.GetAll());
         }
-
+        [ValidationAspect(typeof(PersonValidator))]
         public IResult Add(Person person)
         {
             var result = BusinessRules.Run(CheckIfRealPerson(person),
-                CheckIfPersonExists(person.NationalId),
+                
                PersonInformationToUpper(person));
             if (result != null)
             {
@@ -69,7 +71,7 @@ namespace Cafe.Business.Business
             return new SuccessResult();
         }
 
-        private IResult CheckIfPersonExists(long nationalId)
+        private IResult CheckIfPersonExists(string nationalId)
         {
             var result = _personDal.GetAll(p => p.NationalId == nationalId).Any();
             if (result)

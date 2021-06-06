@@ -9,8 +9,10 @@ using System.Text;
 namespace Cafe.Core.DataAccess.EntityFramework
 {
     public class EfEntityRepository<TEntity, TContext> : IEntityRepository<TEntity> where TEntity : class, IEntity, new()
-        where TContext : DbContext, new()
+        where TContext : DbContext,new()
     {
+
+       
         public void Add(TEntity entity)
         {
             using (var context = new TContext())

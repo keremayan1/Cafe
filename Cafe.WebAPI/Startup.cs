@@ -10,11 +10,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cafe.Business.DependencyResolvers;
 using Cafe.Core.DependencyResolvers;
 using Cafe.Core.Extensions;
 using Cafe.Core.Utilities.Security.Encryption;
 using Cafe.Core.Utilities.Security.JWT;
+using Cafe.DataAccess.Concrete.EntityFramework.MSSQL.Context;
+using Cafe.DataAccess.Concrete.EntityFramework.SQLite.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Cafe.WebAPI
@@ -31,6 +35,9 @@ namespace Cafe.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DbContext>();
+            services.AddDbContext<DbContext, SqlLiteDataContext>();
+
             services.AddControllers();
             services.AddCors();
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
@@ -47,7 +54,7 @@ namespace Cafe.WebAPI
                     IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                 };
             });
-            services.AddDependencyResolvers(new CoreModule());
+            services.AddDependencyResolvers(new CoreModule(),new BusinessModule());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,6 +10,7 @@ namespace Cafe.Core.Extensions
         public static void ConfigrueCustomExceptionMiddleware(this IApplicationBuilder app)
         {
             app.UseMiddleware<ExceptionMiddleware>();
+            
         }
     }
 }

@@ -10,5 +10,6 @@ namespace Cafe.DataAccess.Concrete.EntityFramework.MSSQL
 {
    public class EfDrinkDal:EfEntityRepository<Drink,CafeContext>,IDrinkDal
     {
+        
     }
 }

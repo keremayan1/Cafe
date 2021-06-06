@@ -21,10 +21,6 @@ namespace Cafe.Business.DependencyResolvers.Autofac
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<DrinkManager>().As<IDrinkService>().SingleInstance();
-          
-            
-            
-            
             builder.RegisterType<EfDrinkDal>().As<IDrinkDal>().SingleInstance();
             builder.RegisterType<FoodManager>().As<IFoodService>().SingleInstance();
             builder.RegisterType<EfFoodDal>().As<IFoodDal>().SingleInstance();
@@ -32,9 +28,8 @@ namespace Cafe.Business.DependencyResolvers.Autofac
             builder.RegisterType<EfDessertDal>().As<IDessertDal>().SingleInstance();
             builder.RegisterType<KpsServiceAdapter>().As<IKpsService>().SingleInstance();
             builder.RegisterType<EfPersonDal>().As<IPersonDal>().SingleInstance();
+            builder.RegisterType<DataAccess.Concrete.EntityFramework.SQLite.EfPersonDal>().As<IPersonDal>().SingleInstance();
             builder.RegisterType<PersonManager>().As<IPersonService>().SingleInstance();
-
-
             builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
             builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
             builder.RegisterType<AuthManager>().As<IAuthService>();

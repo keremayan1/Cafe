@@ -10,5 +10,6 @@ namespace Cafe.DataAccess.Concrete.EntityFramework.MSSQL
 {
    public class EfStockDal:EfEntityRepository<Stock,CafeContext>,IStockDal
     {
+
     }
 }
