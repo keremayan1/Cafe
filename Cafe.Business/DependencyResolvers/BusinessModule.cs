@@ -13,8 +13,9 @@ namespace Cafe.Business.DependencyResolvers
     {
         public void Load(IServiceCollection services)
         {
-            services.AddDbContext<DbContext>();
-           services.AddDbContext<DbContext,SqlLiteDataContext>();
+            services.AddDbContext<DbContext>(optionsAction=>optionsAction.UseSqlServer(@"Server = (localdb)\mssqllocaldb; Database = Cafe; Trusted_Connection = true"));
+           services.AddDbContext<DbContext,SqlLiteDataContext>(optionsLifetime=>optionsLifetime.UseSqlite("CafeSqlLiteContext"));
+       
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Cafe.Business.DependencyResolvers.Autofac
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
             builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>().SingleInstance();
-
+            
             var assembly = Assembly.GetExecutingAssembly(); //GetExecutingAssembly: Mevcut Assemblye ulaşmak 
 
             builder.RegisterAssemblyTypes(assembly). // şu assembly türündeki bütün assemblyleri kayıt et
